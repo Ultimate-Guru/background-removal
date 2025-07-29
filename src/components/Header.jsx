@@ -1,8 +1,30 @@
 import React from 'react'
 import { assets } from '../assets/assets'
 import { useNavigate } from 'react-router-dom'
+import { useEffect } from 'react'
+import ScrollReveal from 'scrollreveal'
 
 const Header = () => {
+    useEffect(() => {
+        ScrollReveal().reveal('.from-left', {
+            duration: 1000,
+            distance: '50px',
+            origin: 'left',
+            reset: false, // if true, it reveals again on re-scroll
+            delay: 100,
+            cleanup: true
+        });
+
+        ScrollReveal().reveal('.from-right', {
+            duration: 1000,
+            distance: '50px',
+            origin: 'right',
+            reset: false, // if true, it reveals again on re-scroll
+            delay: 100,
+            cleanup: true
+        });
+    }, []);
+
     const navigate = useNavigate();
 
     const handleFileChange = (e) => {
@@ -16,7 +38,7 @@ const Header = () => {
     return (
         <div className='flex items-center justify-between max-sm:flex-col-reverse gap-y-10 px-4 mt-10 lg:px-44 sm:mt-20'>
             {/* Left Side */}
-            <div>
+            <div className='from-left'>
                 <h1 className='text-4xl xl:text-5xl 2xl:text-6xl font-bold text-neutral-700 leading-tight'>
                     Remove the
                     <br className='max-md:hidden' />
@@ -39,7 +61,7 @@ const Header = () => {
             </div>
 
             {/* Right Side */}
-            <div>
+            <div className='from-right'>
                 <img src={assets.header_img} alt="Header_Image" className='w-full max-w-md' loading='lazy' />
             </div>
         </div>

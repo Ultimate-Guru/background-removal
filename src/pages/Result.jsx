@@ -1,8 +1,21 @@
 import React from 'react'
 import { assets } from '../assets/assets'
 import { useLocation, useNavigate } from 'react-router-dom'
+import { useEffect } from 'react'
+import ScrollReveal from 'scrollreveal'
 
 const Result = () => {
+  useEffect(() => {
+    ScrollReveal().reveal('.left', {
+      duration: 1000,
+      distance: '50px',
+      origin: 'left',
+      reset: false, // if true, it reveals again on re-scroll
+      delay: 200,
+      cleanup: true
+    });
+  }, []);
+
   const location = useLocation();
   const navigate = useNavigate();
   const imageUrl = location.state?.imageUrl;
@@ -10,7 +23,7 @@ const Result = () => {
   return (
     <div className='mx-4 my-3 lg:mx-44 min-h-[75vh]'>
 
-      <div className='bg-white rounded-lg px-8 py-6 drop-shadow-md'>
+      <div className='bg-white rounded-lg px-8 py-6 drop-shadow-md left'>
 
         {/* Image Container */}
         <div className='flex flex-col sm:grid grid-cols-2 gap-8'>

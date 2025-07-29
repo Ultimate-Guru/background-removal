@@ -1,15 +1,28 @@
 import React from 'react'
+import { useEffect } from 'react'
 import { assets } from '../assets/assets'
 import { NavLink } from 'react-router-dom'
 import { useClerk, UserButton, useUser } from '@clerk/clerk-react'
+import ScrollReveal from 'scrollreveal'
 
 const Navbar = () => {
+
+    useEffect(() => {
+        ScrollReveal().reveal('.reveal', {
+            duration: 1000,
+            distance: '50px',
+            origin: 'top',
+            reset: false, // if true, it reveals again on re-scroll
+            delay: 200,
+            cleanup: true
+        });
+    }, []);
 
     const { openSignIn } = useClerk();
     const { isSignedIn } = useUser();
 
     return (
-        <div className='flex justify-between items-center mx-4 py-3 lg:mx-44'>
+        <div className='flex justify-between items-center mx-4 py-3 lg:mx-44 reveal'>
             <NavLink to='/'>
                 <img src={assets.logo} alt="Logo" className='w-32 sm:w-44' loading='lazy' />
             </NavLink>

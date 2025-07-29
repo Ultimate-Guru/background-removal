@@ -1,7 +1,31 @@
 import React, { useState } from 'react'
 import { assets } from '../assets/assets';
+import { useEffect } from 'react';
+import ScrollReveal from 'scrollreveal';
 
 const BgSlider = () => {
+    useEffect(() => {
+
+        ScrollReveal().reveal('.from-top', {
+            duration: 1000,
+            distance: '50px',
+            origin: 'top',
+            reset: false, // if true, it reveals again on re-scroll
+            delay: 100,
+            cleanup: true
+
+        });
+
+        ScrollReveal().reveal('.from-bottom', {
+            duration: 1000,
+            distance: '50px',
+            origin: 'bottom',
+            reset: false, // if true, it reveals again on re-scroll
+            delay: 100,
+            cleanup: true
+        });
+    }, [])
+
 
     const [sliderPosition, setSliderPosition] = useState(50);
 
@@ -9,25 +33,25 @@ const BgSlider = () => {
         setSliderPosition(e.target.value);
     }
 
-  return (
-    <div className='pb-10 md:py-20 mx-2'>
-        {/* Title */}
-        <h1 className='mb-12 sm:mb-20 text-center text-2xl md:text-3xl lg:text-4xl mt-4 font-semibold bg-gradient-to-r from-gray-900 to-gray-400 bg-clip-text text-transparent'>
-            Remove Background With High <br /> Quality and Accuracy
-        </h1>
+    return (
+        <div className='pb-10 md:py-20 mx-2'>
+            {/* Title */}
+            <h1 className='mb-12 sm:mb-20 text-center text-2xl md:text-3xl lg:text-4xl mt-4 font-semibold bg-gradient-to-r from-gray-900 to-gray-400 bg-clip-text text-transparent from-top'>
+                Remove Background With High <br /> Quality and Accuracy
+            </h1>
 
-        <div className='relative w-full max-w-3xl overflow-hidden m-auto rounded-xl'>
-            {/* Background Image */}
-            <img src={assets.image_w_bg} alt="Image Bg" style={{clipPath: `inset(0 ${100.2 - sliderPosition}% 0 0)`}} loading='lazy' />
+            <div className='relative w-full max-w-3xl overflow-hidden m-auto rounded-xl from-bottom'>
+                {/* Background Image */}
+                <img src={assets.image_w_bg} alt="Image Bg" style={{ clipPath: `inset(0 ${100.2 - sliderPosition}% 0 0)` }} loading='lazy' />
 
-            {/* Foreground Image */}
-            <img src={assets.image_wo_bg} alt="Image Bg" className='absolute top-0 left-0 w-full h-full' style={{clipPath: `inset(0 0 0 ${sliderPosition}%)`}} loading='lazy' />
+                {/* Foreground Image */}
+                <img src={assets.image_wo_bg} alt="Image Bg" className='absolute top-0 left-0 w-full h-full' style={{ clipPath: `inset(0 0 0 ${sliderPosition}%)` }} loading='lazy' />
 
-            {/* Slider */}
-            <input type="range" className='absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full z-10 slider' min={0} max={100} value={sliderPosition} onChange={handleSliderChange} />
+                {/* Slider */}
+                <input type="range" className='absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full z-10 slider' min={0} max={100} value={sliderPosition} onChange={handleSliderChange} />
+            </div>
         </div>
-    </div>
-  )
+    )
 }
 
 export default BgSlider

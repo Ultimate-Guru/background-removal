@@ -1,9 +1,23 @@
 import React from "react";
 import { assets, plans } from "../assets/assets";
+import { useEffect } from 'react'
+import ScrollReveal from 'scrollreveal'
 
 const BuyCredit = () => {
+
+  useEffect(() => {
+    ScrollReveal().reveal('.right', {
+      duration: 1000,
+      distance: '50px',
+      origin: 'right',
+      reset: false, // if true, it reveals again on re-scroll
+      delay: 200,
+      cleanup: true
+    });
+  }, []);
+
   return (
-    <div className="min-h-[80vh] pt-14 text-center mb-10">
+    <div className="min-h-[80vh] pt-14 text-center mb-10 right">
       <button className="rounded-full mb-10 border border-gray-400 px-10 py-2">
         Our Plans
       </button>
